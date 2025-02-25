@@ -39,6 +39,7 @@ public class Main {
                 System.out.println("잘못된 기호입니다.");
             }
 
+            // output
             System.out.println(result);
 
             // decide keep playing or end program
