@@ -5,14 +5,28 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int result = 0;
+        char play = 'p';
 
-        // 입력
+        // input
         System.out.print("첫번째 숫자 입력: ");
         int num1 = Integer.parseInt(scanner.nextLine());
         System.out.print("두번째 숫자 입력: ");
         int num2 = Integer.parseInt(scanner.nextLine());
         System.out.print("사용할 사칙연산 기호: ");
         char operator = scanner.next().charAt(0);
+
+        // find correct operator
+        if (operator == '+') {
+            result = num1 + num2;
+        } else if (operator == '-') {
+            result = num1 - num2;
+        } else if (operator == '*') {
+            result = num1 * num2;
+        } else if (operator == '/') {
+            result = num1 / num2;
+        } else {
+            System.out.println("잘못된 기호입니다.");
+        }
 
         System.out.println(result);
     }
