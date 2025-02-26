@@ -1,5 +1,5 @@
 import dto.FormulaDto;
-import service.ArithmeticCalculator;
+import service.Calculator;
 
 import io.Input;
 import io.Output;
@@ -24,7 +24,7 @@ public class Main {
                 dto = Input.playContinue(result);
             }
 
-            ArithmeticCalculator<Double> calculator = new ArithmeticCalculator<>(dto);
+            Calculator<Double> calculator = new Calculator<>(dto);
 
             result = calculator.calculate();
             Output.printResult(result);
