@@ -19,7 +19,7 @@ public class Calculator {
     }
 
     public Double getResult(char decision) {
-        if(decision == 'y') {
+        if (decision == 'y') {
             removeResult();
             System.out.println("삭제된 결과입니다.");
             return result;
@@ -29,21 +29,24 @@ public class Calculator {
     }
 
     private Double calculate() {
+        Operator res = null;
         switch (operator) {
             case '+':
-                result = (double) (firstNumber + secondNumber);
+                res = Operator.ADD;
                 break;
             case '-':
-                result = (double) (firstNumber - secondNumber);
+                res = Operator.SUBTRACT;
                 break;
             case '*':
-                result = (double) (firstNumber * secondNumber);
+                res = Operator.MULTIPLY;
                 break;
             case '/':
-                result = (double) (firstNumber / secondNumber);
+                res = Operator.DIVIDE;
                 break;
             default:
         }
+
+        result = res.calculate(firstNumber, secondNumber);
         return result;
     }
 
