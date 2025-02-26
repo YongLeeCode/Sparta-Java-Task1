@@ -1,4 +1,5 @@
 package service;
 
-public interface ArithmeticCalculators {
+public interface ArithmeticCalculator<T extends Number> {
+    public Double calculate(T x, T y);
 }
