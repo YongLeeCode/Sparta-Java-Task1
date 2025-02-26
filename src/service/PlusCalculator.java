@@ -1,4 +1,8 @@
 package service;
 
-public class PlusCalculator {
+public class PlusCalculator implements ArithmeticCalculator{
+
+    public Double calculate(Number x, Number y) {
+        return x.doubleValue() +  y.doubleValue();
+    }
 }
