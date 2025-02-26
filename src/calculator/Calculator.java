@@ -1,31 +1,53 @@
 package calculator;
 
 public class Calculator {
-    private int num1;
-    private int num2;
+    private int firstNumber;
+    private int secondNumber;
+    private char operator;
+    private Double result;
 
-    public Calculator(int num1, int num2) {
-        this.num1 = num1;
-        this.num2 = num2;
+    public void setFirstNumber(int firstNumber) {
+        this.firstNumber = firstNumber;
     }
 
-    public double add() {
-        return num1 + num2;
+    public void setSecondNumber(int secondNumber) {
+        this.secondNumber = secondNumber;
     }
 
-    public double subtract() {
-        return num1 - num2;
+    public void setOperator(char operator) {
+        this.operator = operator;
     }
 
-    public double multiply() {
-        return num1 * num2;
-    }
-
-    public double divide() {
-        if (num2 == 0) {
-            System.out.println("0으로 나눌 수 없습니다.");
-            return -1;
+    public Double getResult(char decision) {
+        if(decision == 'y') {
+            removeResult();
+            System.out.println("삭제된 결과입니다.");
+            return result;
+        } else {
+            return calculate();
         }
-        return (double) num1 / num2;
+    }
+
+    private Double calculate() {
+        switch (operator) {
+            case '+':
+                result = (double) (firstNumber + secondNumber);
+                break;
+            case '-':
+                result = (double) (firstNumber - secondNumber);
+                break;
+            case '*':
+                result = (double) (firstNumber * secondNumber);
+                break;
+            case '/':
+                result = (double) (firstNumber / secondNumber);
+                break;
+            default:
+        }
+        return result;
+    }
+
+    private void removeResult() {
+        result = null;
     }
 }
