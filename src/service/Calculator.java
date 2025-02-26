@@ -3,33 +3,48 @@ package service;
 import dto.FormulaDto;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
-public class ArithmeticCalculator<N extends Number> {
+public class Calculator<N extends Number> {
     private FormulaDto dto;
 
-    public ArithmeticCalculator(FormulaDto dto) {
+    private final Map<String, ArithmeticCalculator> map = Map.of(
+            "PLUS", new PlusCalculator(),
+            "SUBTRACT", new SubtractCalculator(),
+            "MULTIPLY", new MultiplyCalculator(),
+            "DIVIDE", new DivideCalculator()
+    );
+
+    public Calculator(FormulaDto dto) {
         this.dto = dto;
     }
 
     public Double calculate() {
-        Operator op = null;
+        String symbol;
+        double result = 0;
         switch (dto.getOperator()) {
             case '+':
-                op = Operator.ADD;
+                symbol = Operator.PLUS.name();
                 break;
             case '-':
-                op = Operator.SUBTRACT;
+                symbol = Operator.SUBTRACT.name();
                 break;
             case '*':
-                op = Operator.MULTIPLY;
+                symbol = Operator.MULTIPLY.name();
                 break;
             case '/':
-                op = Operator.DIVIDE;
+                symbol = Operator.DIVIDE.name();
                 break;
             default:
+                symbol = "Wrong";
         }
+        if(symbol.equals("Wrong")) {
+            throw new IllegalArgumentException("Wrong operator");
+        }
+        ArithmeticCalculator calculator = map.get(symbol);
+        result = calculator.calculate(dto.getFirstNumber(), dto.getSecondNumber());
 
-        double result = op.calculate((double) dto.getFirstNumber(), (double) dto.getSecondNumber());
+        System.out.println(symbol);
         formatDouble(result);
         return result;
     }
