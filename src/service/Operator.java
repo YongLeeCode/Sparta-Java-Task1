@@ -1,4 +1,4 @@
-package calculator.service;
+package service;
 
 import java.util.function.DoubleBinaryOperator;
 
@@ -18,8 +18,5 @@ enum Operator {
 
     public double calculate(double x, double y) {
         return operator.applyAsDouble(x, y);
-//        return operator.apply(x, y);
     }
-
-    ;
 }

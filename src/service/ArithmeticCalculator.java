@@ -1,6 +1,8 @@
-package calculator.service;
+package service;
 
-import calculator.dto.FormulaDto;
+import dto.FormulaDto;
+
+import java.math.BigDecimal;
 
 public class ArithmeticCalculator<N extends Number> {
     private FormulaDto dto;
@@ -10,24 +12,31 @@ public class ArithmeticCalculator<N extends Number> {
     }
 
     public Double calculate() {
-        Operator res = null;
+        Operator op = null;
         switch (dto.getOperator()) {
             case '+':
-                res = Operator.ADD;
+                op = Operator.ADD;
                 break;
             case '-':
-                res = Operator.SUBTRACT;
+                op = Operator.SUBTRACT;
                 break;
             case '*':
-                res = Operator.MULTIPLY;
+                op = Operator.MULTIPLY;
                 break;
             case '/':
-                res = Operator.DIVIDE;
+                op = Operator.DIVIDE;
                 break;
             default:
         }
 
-        return res.calculate((double) dto.getFirstNumber(), (double) dto.getSecondNumber());
+        double result = op.calculate((double) dto.getFirstNumber(), (double) dto.getSecondNumber());
+        formatDouble(result);
+        return result;
     }
 
+    private double formatDouble(double value) {
+        return new BigDecimal(value)
+                .stripTrailingZeros()
+                .doubleValue();
+    }
 }
