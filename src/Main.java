@@ -1,43 +1,34 @@
-import calculator.Calculator;
+import dto.FormulaDto;
+import service.ArithmeticCalculator;
 
-import java.util.Arrays;
+import io.Input;
+import io.Output;
+
 import java.util.Scanner;
 
-// Lv 1. 클래스 없이 기본적인 연산을 수행할 수 있는 계산기 만들기
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        char play = 'p';
+        char play = 'n';
+        double result = 0;
+        FormulaDto dto = null;
 
-        while (play != 'q' && play == 'p') {
-            // end condition
-            if (play == 'q') {
-                System.out.println("계산기를 종료합니다.");
-                break;
+        do {
+            if (play != 'n' && play != 'k') {
+                continue;
             }
 
-            Calculator calculator = new Calculator();
+            if (play == 'n') {
+                dto = Input.playNew();
+            } else if (play == 'k') {
+                dto = Input.playContinue(result);
+            }
 
-            // input
-            System.out.print("첫번째 숫자 입력: ");
-            calculator.setFirstNumber(scanner.nextInt());
-            System.out.print("두번째 숫자 입력: ");
-            calculator.setSecondNumber(scanner.nextInt());
-            System.out.print("사용할 사칙연산 기호: ");
-            calculator.setOperator(scanner.next().charAt(0));
+            ArithmeticCalculator<Double> calculator = new ArithmeticCalculator<>(dto);
 
-            // decide to remove the result
-            System.out.println("결과를 삭제하시겠습니까? (y/n)");
-            char decision = scanner.next().charAt(0);
-
-            // output
-            System.out.printf("결과: %s \n", calculator.getResult(decision));
-
-            // decide keep playing or end program
-            System.out.println("프로그램 종료를 원하시면, q를 입력하고 엔터, ");
-            System.out.println("다른 계산을 원하시면, p를 입력하고 엔터");
+            result = calculator.calculate();
+            Output.printResult(result);
             play = scanner.next().charAt(0);
-        }
-
+        } while (play != 'q');
     }
 }
