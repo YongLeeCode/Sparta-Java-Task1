@@ -1,4 +1,4 @@
-package calculator.dto;
+package dto;
 
 public class FormulaDto<N extends Number> {
     private N firstNumber;
@@ -23,5 +23,8 @@ public class FormulaDto<N extends Number> {
         return operator;
     }
 
+    public void setFirstNumber(N firstNumber) {
+        this.firstNumber = firstNumber;
+    }
 
 }
