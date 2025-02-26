@@ -1,3 +1,5 @@
+import calculator.Calculator;
+
 import java.util.Scanner;
 
 // Lv 1. 클래스 없이 기본적인 연산을 수행할 수 있는 계산기 만들기
@@ -22,19 +24,16 @@ public class Main {
             System.out.print("사용할 사칙연산 기호: ");
             char operator = scanner.next().charAt(0);
 
+            Calculator calculator = new Calculator(num1, num2);
             // find correct operator
             if (operator == '+') {
-                result = num1 + num2;
+                result = calculator.add();
             } else if (operator == '-') {
-                result = num1 - num2;
+                result = calculator.subtract();
             } else if (operator == '*') {
-                result = num1 * num2;
+                result = calculator.multiply();
             } else if (operator == '/') {
-                if (num2 == 0) {
-                    System.out.println("0으로 나눌 수 없습니다.");
-                    continue;
-                }
-                result = (double) num1 / num2;
+                result = calculator.divide();
             } else {
                 System.out.println("잘못된 기호입니다.");
             }
