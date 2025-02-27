@@ -5,7 +5,7 @@ import dto.FormulaDto;
 import java.math.BigDecimal;
 import java.util.Map;
 
-public class Calculator<N extends Number> {
+public class CalculatorService<N extends Number> {
     private FormulaDto dto;
 
     private final Map<String, ArithmeticCalculator> map = Map.of(
@@ -15,7 +15,7 @@ public class Calculator<N extends Number> {
             "DIVIDE", new DivideCalculator()
     );
 
-    public Calculator(FormulaDto dto) {
+    public CalculatorService(FormulaDto dto) {
         this.dto = dto;
     }
 
