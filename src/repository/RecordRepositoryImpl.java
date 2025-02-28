@@ -22,9 +22,14 @@ public class RecordRepositoryImpl implements RecordRepository {
     }
 
     // addNew
-    public void save(CalculatorRecord calculatorRecord) {
-
-        records.add(calculatorRecord
-        );
+    public CalculatorRecord save(CalculatorRecord calculatorRecord) {
+        records.add(calculatorRecord);
+        return calculatorRecord;
     }
+
+    // delete Data
+    public void deleteById(int id) {
+        records.remove(id - 1);
+    }
+
 }

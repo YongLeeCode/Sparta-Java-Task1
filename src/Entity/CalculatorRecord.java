@@ -1,12 +1,12 @@
 package Entity;
 
 public class CalculatorRecord {
-    private int increment_id = 0;
-    private final int id;
-    private final double firstNumber;
-    private final double secondNumber;
-    private final char operator;
-    private final double result;
+    private static int increment_id = 0;
+    private int id;
+    private double firstNumber;
+    private double secondNumber;
+    private char operator;
+    private double result;
 
     public CalculatorRecord(double firstNumber, double secondNumber, char operator, double result) {
         this.id = ++increment_id;
