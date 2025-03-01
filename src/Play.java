@@ -5,11 +5,13 @@ import io.OutputHandler;
 import repository.RecordRepository;
 import repository.RecordRepositoryImpl;
 import service.CalculatorServiceImpl;
+import utils.DelayUtil;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Play {
+    DelayUtil delayUtil = new DelayUtil();
     RecordRepository repository = new RecordRepositoryImpl();
     CalculatorServiceImpl service = new CalculatorServiceImpl(repository);
     CalculatorController controller = new CalculatorController(service);
@@ -21,42 +23,35 @@ public class Play {
         char play = 'n';
 
         do {
-            if (play != 'n' && play != 'k' && play != 'r' && play != 'd') {
-                System.out.println("잘못된 입력입니다!");
-                try {
-                    Thread.sleep(500); // 0.5초 대기
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                input.printMenu();
-                play = scanner.next().charAt(0);
-                continue;
-            }
-
-            if (play == 'r') {
-                read();
-            } else if (play == 'n') {
-                addNew();
-            } else if (play == 'k') {
-                addWithPrevious();
-            } else if (play == 'd') {
-                delete();
+            switch (play) {
+                case 'n' -> addNew();
+                case 'k' -> addWithPrevious();
+                case 'r' -> read();
+                case 'd' -> delete();
+                default -> typeWrong();
             }
 
             play = scanner.next().charAt(0);
         } while (play != 'q');
     }
 
+    private void typeWrong() {
+        System.out.println("잘못된 입력입니다!");
+        delayUtil.deplay();
+        input.printMenu();
+    }
+
     private void read() {
         List<RecordDto> dtos = controller.findAll();
         OutputHandler.printRecords(dtos);
-
+        delayUtil.deplay();
         input.printMenu();
     }
 
     private void addNew() {
         dto = input.playNew();
         OutputHandler.printResult(controller.addRecord(dto));
+        delayUtil.deplay();
         input.printMenu();
     }
 
@@ -78,6 +73,7 @@ public class Play {
         System.out.println("---------------------------");
         dto = input.playContinue(controller.findPrev(id));
         OutputHandler.printResult(controller.addRecord(dto));
+        delayUtil.deplay();
         input.printMenu();
     }
 }
