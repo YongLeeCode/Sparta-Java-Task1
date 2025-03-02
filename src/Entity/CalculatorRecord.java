@@ -1,15 +1,14 @@
 package Entity;
 
 public class CalculatorRecord {
-    private static int increment_id = 0;
     private int id;
     private double firstNumber;
     private double secondNumber;
     private char operator;
     private double result;
 
-    public CalculatorRecord(double firstNumber, double secondNumber, char operator, double result) {
-        this.id = ++increment_id;
+    public CalculatorRecord(int id, double firstNumber, double secondNumber, char operator, double result) {
+        this.id = id;
         this.firstNumber = firstNumber;
         this.secondNumber = secondNumber;
         this.operator = operator;

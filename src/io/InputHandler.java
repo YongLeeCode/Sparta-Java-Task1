@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class InputHandler {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public RecordDto playNew() {
+    public RecordDto playNew(int id) {
         // input
         System.out.print("첫번째 숫자 입력: ");
         Number firstNumber = inputNumber();
@@ -16,7 +16,7 @@ public class InputHandler {
         Number secondNumber = inputNumber();
         System.out.print("사용할 사칙연산 기호: ");
         char operator = inputOperator();
-        return new RecordDto(firstNumber, secondNumber, operator);
+        return new RecordDto(id, firstNumber, secondNumber, operator);
     }
 
     public void printMenu() {
@@ -28,7 +28,7 @@ public class InputHandler {
         System.out.println("----------------------------");
     }
 
-    public RecordDto playContinue(double firstNumber) {
+    public RecordDto playContinue(int id, double firstNumber) {
         // input
         System.out.println("계속 계산하겠습니다.");
         System.out.printf("첫번째 숫자 : %s \n", formatDouble(firstNumber));
@@ -36,7 +36,7 @@ public class InputHandler {
         Number secondNumber = inputNumber();
         System.out.print("사용할 사칙연산 기호: ");
         char operator = inputOperator();
-        return new RecordDto(firstNumber, secondNumber, operator);
+        return new RecordDto(id, firstNumber, secondNumber, operator);
     }
 
     private Double inputNumber() {

@@ -19,6 +19,8 @@ public class Play {
     RecordDto dto;
     Scanner scanner = new Scanner(System.in);
 
+    private int id = 0;
+
     public void runProgram() {
         char play = 'n';
 
@@ -49,7 +51,7 @@ public class Play {
     }
 
     private void addNew() {
-        dto = input.playNew();
+        dto = input.playNew(++id);
         OutputHandler.printResult(controller.addRecord(dto));
         delayUtil.deplay();
         input.printMenu();
@@ -69,9 +71,9 @@ public class Play {
         List<RecordDto> dtos = controller.findAll();
         OutputHandler.printRecords(dtos);
         System.out.print("몇번째 계산 결과를 사용하시겠습니까? ");
-        int id = scanner.nextInt();
+        int prevId = scanner.nextInt();
         System.out.println("---------------------------");
-        dto = input.playContinue(controller.findPrev(id));
+        dto = input.playContinue(++id, controller.findPrev(prevId));
         OutputHandler.printResult(controller.addRecord(dto));
         delayUtil.deplay();
         input.printMenu();
