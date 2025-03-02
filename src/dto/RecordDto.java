@@ -18,7 +18,8 @@ public class RecordDto<N extends Number> {
 
     private double result;
 
-    public RecordDto(N firstNumber, N secondNumber, char operator) {
+    public RecordDto(int id, N firstNumber, N secondNumber, char operator) {
+        this.id = id;
         this.firstNumber = firstNumber;
         this.secondNumber = secondNumber;
         this.operator = operator;
@@ -45,7 +46,7 @@ public class RecordDto<N extends Number> {
     }
 
     public CalculatorRecord toEntity(double result) {
-        return new CalculatorRecord((double) this.firstNumber, (double) this.secondNumber, this.operator, result);
+        return new CalculatorRecord(this.id, (double) this.firstNumber, (double) this.secondNumber, this.operator, result);
     }
 
     public static RecordDto fromEntity(CalculatorRecord entity) {
