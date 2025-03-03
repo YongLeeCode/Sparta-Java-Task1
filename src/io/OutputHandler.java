@@ -22,7 +22,7 @@ public class OutputHandler {
 
     private static String formatDouble(double value) {
         return new BigDecimal(value)
-                .setScale(5, RoundingMode.CEILING)
+                .setScale(5, RoundingMode.HALF_UP)
                 .stripTrailingZeros()
                 .toPlainString();
     }
