@@ -3,6 +3,7 @@ package io;
 import dto.RecordDto;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class OutputHandler {
@@ -20,6 +21,9 @@ public class OutputHandler {
     }
 
     private static String formatDouble(double value) {
-        return new BigDecimal(value).stripTrailingZeros().toPlainString();
+        return new BigDecimal(value)
+                .setScale(5, RoundingMode.CEILING)
+                .stripTrailingZeros()
+                .toPlainString();
     }
 }
