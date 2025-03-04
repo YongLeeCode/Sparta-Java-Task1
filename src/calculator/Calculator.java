@@ -18,14 +18,8 @@ public class Calculator {
         this.operator = operator;
     }
 
-    public Double getResult(char decision) {
-        if(decision == 'y') {
-            removeResult();
-            System.out.println("삭제된 결과입니다.");
-            return result;
-        } else {
-            return calculate();
-        }
+    public Double getResult() {
+        return calculate();
     }
 
     private Double calculate() {
@@ -45,9 +39,5 @@ public class Calculator {
             default:
         }
         return result;
-    }
-
-    private void removeResult() {
-        result = null;
     }
 }

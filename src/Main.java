@@ -1,12 +1,13 @@
 import calculator.Calculator;
 
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
-// Lv 1. 클래스 없이 기본적인 연산을 수행할 수 있는 계산기 만들기
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        List<Double> list = new LinkedList<>();
         char play = 'p';
 
         while (play != 'q' && play == 'p') {
@@ -26,12 +27,22 @@ public class Main {
             System.out.print("사용할 사칙연산 기호: ");
             calculator.setOperator(scanner.next().charAt(0));
 
+
+            System.out.println("계산 결과: " + calculator.getResult());
+            list.add(calculator.getResult());
+
+            System.out.println("계산 리스트: ");
+            list.stream().forEach((x) -> System.out.println(x));
+
+
             // decide to remove the result
-            System.out.println("결과를 삭제하시겠습니까? (y/n)");
+            System.out.println("앞 결과를 삭제하시겠습니까? (y/n)");
             char decision = scanner.next().charAt(0);
 
             // output
-            System.out.printf("결과: %s \n", calculator.getResult(decision));
+            if(decision == 'y') {
+                list.remove(0);
+            }
 
             // decide keep playing or end program
             System.out.println("프로그램 종료를 원하시면, q를 입력하고 엔터, ");
