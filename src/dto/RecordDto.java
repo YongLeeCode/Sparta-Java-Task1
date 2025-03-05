@@ -3,7 +3,7 @@ package dto;
 import Entity.CalculatorRecord;
 
 public class RecordDto<N extends Number> {
-    private Integer id;
+    private int id;
     private N firstNumber;
     private N secondNumber;
     private char operator;
