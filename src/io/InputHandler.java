@@ -11,11 +11,12 @@ public class InputHandler {
     public RecordDto playNew(int id) {
         // input
         System.out.print("첫번째 숫자 입력: ");
-        Number firstNumber = inputNumber();
+        double firstNumber = inputNumber();
         System.out.print("두번째 숫자 입력: ");
-        Number secondNumber = inputNumber();
+        double secondNumber = inputNumber();
         System.out.print("사용할 사칙연산 기호: ");
         char operator = inputOperator();
+
         return new RecordDto(id, firstNumber, secondNumber, operator);
     }
 
@@ -39,12 +40,12 @@ public class InputHandler {
         return new RecordDto(id, firstNumber, secondNumber, operator);
     }
 
-    private Double inputNumber() {
+    private double inputNumber() {
         String input = scanner.next();
         try {
             return Double.parseDouble(input);
         } catch (NumberFormatException e) {
-            System.out.println("정수 혹은 실수만 입력 가능합니다.");
+            System.out.println("숫자가 아닙니다");
             return inputNumber();
         }
     }
